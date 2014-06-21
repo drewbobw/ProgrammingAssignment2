@@ -15,7 +15,7 @@ makeCacheMatrix <- function(x = matrix())
         #invmat -- inverse matrix
         #mat -- base matrix
         invmat <-NULL;
-        mat <- NULL;
+        mat <- matrix(0,1,1);
         #=================================
 #         expects temp to be a square matrix. 
 #         Will accept non-square matricies 
@@ -24,13 +24,17 @@ makeCacheMatrix <- function(x = matrix())
 #         mat will be returned in get()
         set <- function(temp)
         {
-#               First round of error checking                        
-                 if (identical(temp, mat)) {
+               
+                if (isTRUE(all.equal(temp, mat))) 
+                {
                          message("Matrix already enterd");
-                         return();
-                   }
-           mat<<- temp;
-           invmat<<-NULL;
+                }
+                
+                else
+                {
+                        mat<<- temp;
+                        invmat<<-NULL;
+                }
         }
         #==================================
         #other accessor functions
